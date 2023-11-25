@@ -1,6 +1,6 @@
 import datetime
 import uuid
-from typing import Optional, Any
+from typing import Optional, Any, Literal
 
 from pydantic import BaseModel, Field
 
@@ -13,6 +13,7 @@ class BaseMenuItem(BaseModel):
     id: Any = Field(default_factory= str_uuid_factory, alias='_id')
     name: str = Field(...)
     price: float= Field(...)
+    menu_section: Literal['main','salat','soup', 'dessert', 'alcohol_drink','drink']
 
     class Config:
         populate_by_name = True

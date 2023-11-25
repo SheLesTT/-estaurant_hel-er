@@ -1,10 +1,9 @@
-from src.schemas.menu_items import BaseMenuItem
-from src.serivces.Represitories.Base_protocol import MongoRepo
-from src.db.db import database
+from src.schemas.all_schemas import BaseMenuItem
+from src.serivces.Represitories.Base_repo import MongoRepo
 
 class MenuItemRepo(MongoRepo):
-    def __init__(self, db = database):
-        super().__init__(db.recipes, BaseMenuItem)
+    def __init__(self, session):
+        super().__init__(session, BaseMenuItem)
 
 
 
