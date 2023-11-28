@@ -10,13 +10,13 @@ from pydantic import BaseModel
 
 class AbstractRepo(ABC):
     @abstractmethod
-    def get_one_item(self, id: int) -> BaseModel:
+    async def get_one_item(self, id: str) -> BaseModel | None:
         pass
     @abstractmethod
-    def get_all_items(self, filters: Mapping) -> list[BaseModel]:
+    async  def get_all_items(self, filters: Mapping) -> list[BaseModel] | None:
         pass
     @abstractmethod
-    def create_item(self, item: BaseModel) -> str:
+    async def create_item(self, item: BaseModel) -> BaseModel:
         pass
 
 class MongoRepo(AbstractRepo):
@@ -26,13 +26,13 @@ class MongoRepo(AbstractRepo):
         self.session = session
 
 
-    async def get_one_item(self,id: str) -> BaseModel:
+    async def get_one_item(self,id: str) -> BaseModel | None:
         result = await self.collection.find_one({"_id": id}, session=self.session)
         if not result:
             return None
         return self.schema(**result)
 
-    async def get_all_items(self, filters: Mapping) -> list[BaseModel]:
+    async def get_all_items(self, filters: Mapping) -> list[BaseModel] | None:
         cursor = self.collection.find(filters, session=self.session)
         items = await cursor.to_list(length=100)
         # print(items)

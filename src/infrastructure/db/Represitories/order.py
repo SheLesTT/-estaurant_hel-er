@@ -1,6 +1,6 @@
 from src.domain.menu.dto.all_schemas import BaseOrder
-from src.ifrastructure.db.Represitories.Base_repo import MongoRepo
-from src.ifrastructure.db import database
+from src.infrastructure.db.Represitories.Base_repo import MongoRepo
+from src.infrastructure.db import database
 
 
 class OrderRepo(MongoRepo):

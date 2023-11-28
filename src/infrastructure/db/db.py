@@ -2,7 +2,7 @@ from motor.motor_asyncio import AsyncIOMotorClient
 from pymongo.server_api import ServerApi
 
 from src.settings import settings
-from src.ifrastructure.db.uow import UnitOfWork
+from src.infrastructure.db.uow import UnitOfWork
 
 uri = f"mongodb://{settings.user_name}:{settings.password}@{settings.host_name}"
 
