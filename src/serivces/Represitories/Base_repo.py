@@ -20,10 +20,10 @@ class AbstractRepo(ABC):
         pass
 
 class MongoRepo(AbstractRepo):
-    def __init__(self, collection, schema: Type[BaseModel]):
+    def __init__(self, collection, schema: Type[BaseModel], session=None):
         self.collection = collection
         self.schema = schema
-        self.session = None
+        self.session = session
 
 
     async def get_one_item(self,id: str) -> BaseModel:
@@ -38,11 +38,14 @@ class MongoRepo(AbstractRepo):
         # print(items)
         return [self.schema(**item) for item in items]
 
-    async def create_item(self, data: BaseModel) -> str:
+    async def create_item(self, data: BaseModel) -> BaseModel:
 
             data= jsonable_encoder(data)
-            result = await self.collection.insert_one(data, session=self.session)
-            return result.inserted_id
+
+            created_id = await self.collection.insert_one(data, session=self.session)
+            result = await self.collection.find_one({"_id": created_id.inserted_id}, session=self.session)
+            result = self.schema(**result)
+            return result
 
 
 

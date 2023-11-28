@@ -9,6 +9,9 @@ class Settings(BaseSettings):
     database_url: str
     db_name: str
     test_db_name: str
+    redis_host: str
+    redis_port: int
+    redis_database: int
 
     model_config = SettingsConfigDict( env_file='~/Restourant2/.env', extra='ignore')
 

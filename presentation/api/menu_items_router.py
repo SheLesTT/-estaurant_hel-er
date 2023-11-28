@@ -1,14 +1,13 @@
 from typing import Annotated
 
 from fastapi import APIRouter, Depends, Request, Response
-from pydantic import BaseModel
 from starlette import status
 
-from src.api.exceptions import MenuItemNotFound
+from presentation.api.exceptions import MenuItemNotFound
 from src.schemas.all_schemas import BaseMenuItem
 from src.serivces.exceptions import MenuItemNotExists
 from src.serivces.menu_item_service import MenuItemService
-from src.api.dependensies import  get_menu_item_service
+from presentation.api.di.providers.dependensies import  get_menu_item_service
 
 router = APIRouter(
     prefix='/menuitems',

@@ -6,8 +6,7 @@ from motor.motor_asyncio import AsyncIOMotorClient
 from pymongo.server_api import ServerApi
 
 from src.config.settings import settings
-
-
+from src.db.unit_of_work import UnitOfWork
 
 uri = f"mongodb://{settings.user_name}:{settings.password}@{settings.host_name}"
 
@@ -18,7 +17,7 @@ client = AsyncIOMotorClient("mongodb://localhost:27017", settings.port, server_a
 database = client.restourant
 
 def db_provider(client):
-    yield client["restourant"]
+    yield 23
 
 
 def get_db():
@@ -27,22 +26,18 @@ def get_db():
 
 
 class DB_provider():
-    def __init__(self, uri, port, database_name):
-        self.uri = uri
-        self.port = port
-        self.database_name = database_name
-        self.client=  AsyncIOMotorClient(self.uri, self.port, server_api=ServerApi('1'))
-    async def provide_db(self):
+    def __init__(self, pool, db_name):
+        self.client=  pool
+        self.db_name = db_name
+    async def get_session(self):
+        async with await self.client.start_session() as session:
+            uow = UnitOfWork(session, self.client[self.db_name])
+            yield uow
 
+    async def provide_db(self):
         return self.client[self.database_name]
 
 
-async def get_session(client):
-    print("get session")
-    async with await client.start_session() as session:
-
-        yield session
-        print("end session")
 
 # AsyncMongoSession.Test = True
 # a = AsyncMongoSession()

@@ -9,7 +9,7 @@ from fastapi import FastAPI
 from motor.motor_asyncio import AsyncIOMotorClient, AsyncIOMotorDatabase
 from starlette.middleware.cors import CORSMiddleware
 
-from src.api import menu_items_router
+from presentation.api import menu_items_router
 from src.config.settings import settings
 from src.db.db import DB_provider, get_db
 from src.schemas.all_schemas import BaseMenuItem
