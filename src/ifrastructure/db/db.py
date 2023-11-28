@@ -1,12 +1,8 @@
-
-import asyncio
-
-import mongomock_motor
 from motor.motor_asyncio import AsyncIOMotorClient
 from pymongo.server_api import ServerApi
 
-from src.config.settings import settings
-from src.db.unit_of_work import UnitOfWork
+from src.settings import settings
+from src.ifrastructure.db.uow import UnitOfWork
 
 uri = f"mongodb://{settings.user_name}:{settings.password}@{settings.host_name}"
 

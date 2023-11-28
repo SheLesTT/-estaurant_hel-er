@@ -1,5 +1,5 @@
-from src.schemas.all_schemas import BaseMenuItem
-from src.serivces.Represitories.Base_repo import MongoRepo
+from src.domain.menu.dto.all_schemas import BaseMenuItem
+from src.ifrastructure.db.Represitories.base import MongoRepo
 
 class MenuItemRepo(MongoRepo):
     def __init__(self, collection,session):

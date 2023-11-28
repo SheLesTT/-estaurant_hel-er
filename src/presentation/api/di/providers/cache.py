@@ -1,4 +1,4 @@
-from src.db.redis import RedisRepository
+from src.ifrastructure.db.Represitories.redis.base import RedisRepository
 
 
 def get_cache() -> None:

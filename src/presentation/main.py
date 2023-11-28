@@ -3,10 +3,10 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from motor.motor_asyncio import AsyncIOMotorClient
 
-from presentation.api import menu_items_router
-from presentation.api.di.providers.Cashe_provider import get_cache, CacheProvider
-from src.db.db import  DB_provider, get_db
-from src.config.settings import settings
+from src.presentation.handlers.menu import menu_items
+from src.presentation.api.di.providers.cache import get_cache, CacheProvider
+from src.ifrastructure.db.db import  DB_provider, get_db
+from src.settings import settings
 
 
 def setup_di(app: FastAPI,cache: Redis, pool: AsyncIOMotorClient, db_name: str):
@@ -33,7 +33,7 @@ def build_app():
         allow_headers=["*"],
     )
 
-    app.include_router(menu_items_router.router)
+    app.include_router(menu_items.router)
     return app
 
 app = build_app()

@@ -2,11 +2,11 @@ import json
 import time
 from typing import Mapping
 
-from presentation.api import parse_request_parameters_into_mongo_filter
-from src.schemas.all_schemas import BaseMenuItem
+from src.presentation.handlers.utils import parse_request_parameters_into_mongo_filter
+from src.domain.menu.dto.all_schemas import BaseMenuItem
 
-from src.serivces.Represitories.menu_item_repo import MenuItemRepo
-from src.serivces.exceptions import MenuItemNotExists
+from src.ifrastructure.db.Represitories.menu_item import MenuItemRepo
+from src.domain.menu.exceptions.menu_item import MenuItemNotExists
 
 
 class MenuItemService():

@@ -1,6 +1,5 @@
+from src.domain.common.exceptions.base import AppException
 
-class AppException(Exception):
-    pass
 
 class MenuItemException(AppException):
     """ Base menu item exception """

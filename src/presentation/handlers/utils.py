@@ -1,4 +1,3 @@
-from typing import Mapping
 
 
 def parse_request_parameters_into_mongo_filter(request) -> dict:

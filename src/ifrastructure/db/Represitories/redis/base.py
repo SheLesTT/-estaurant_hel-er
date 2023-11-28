@@ -1,6 +1,6 @@
 from redis.asyncio import Redis
 
-from src.db.ICashe import ICache
+from src.domain.common.interfaces.cache import ICache
 
 class RedisRepository(ICache):
     def __init__(self, redis: Redis):

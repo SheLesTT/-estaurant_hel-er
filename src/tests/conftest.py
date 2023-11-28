@@ -9,10 +9,10 @@ from fastapi import FastAPI
 from motor.motor_asyncio import AsyncIOMotorClient, AsyncIOMotorDatabase
 from starlette.middleware.cors import CORSMiddleware
 
-from presentation.api import menu_items_router
-from src.config.settings import settings
-from src.db.db import DB_provider, get_db
-from src.schemas.all_schemas import BaseMenuItem
+from src.presentation import menu_items_router
+from src.settings import settings
+from src.ifrastructure.db import DB_provider, get_db
+from src.domain.menu.dto.all_schemas import BaseMenuItem
 
 
 def setup_di(app: FastAPI, database_url: str, database_port: str, db_name: str)-> None:

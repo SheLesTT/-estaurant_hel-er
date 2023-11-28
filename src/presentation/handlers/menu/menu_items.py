@@ -3,11 +3,11 @@ from typing import Annotated
 from fastapi import APIRouter, Depends, Request, Response
 from starlette import status
 
-from presentation.api.exceptions import MenuItemNotFound
-from src.schemas.all_schemas import BaseMenuItem
-from src.serivces.exceptions import MenuItemNotExists
-from src.serivces.menu_item_service import MenuItemService
-from presentation.api.di.providers.dependensies import  get_menu_item_service
+from src.presentation.handlers.responces.exceptions.main import MenuItemNotFound
+from src.domain.menu.dto.all_schemas import BaseMenuItem
+from src.domain.menu.exceptions.menu_item import MenuItemNotExists
+from src.domain.menu.usecases.menu_item_service import MenuItemService
+from src.presentation.api.di.providers.services import  get_menu_item_service
 
 router = APIRouter(
     prefix='/menuitems',
