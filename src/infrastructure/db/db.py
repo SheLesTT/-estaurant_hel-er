@@ -4,15 +4,15 @@ from pymongo.server_api import ServerApi
 from src.settings import settings
 from src.infrastructure.db.uow import UnitOfWork
 
-uri = f"mongodb://{settings.user_name}:{settings.password}@{settings.host_name}"
+# uri = f"mongodb://{settings.user_name}:{settings.password}@{settings.host_name}"
+#
+# client = AsyncIOMotorClient("mongodb://localhost:27017", settings.port, server_api=ServerApi('1'), )
+#     # Send a ping to confirm a successful connection
+#
+#
+# database = client.restourant
 
-client = AsyncIOMotorClient("mongodb://localhost:27017", settings.port, server_api=ServerApi('1'), )
-    # Send a ping to confirm a successful connection
-
-
-database = client.restourant
-
-def db_provider(client):
+def db_provider():
     yield 23
 
 

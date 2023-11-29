@@ -27,12 +27,14 @@ async def get_menu_items(
     return menu_items
 
 @router.get(
-            "/{id}",
-            responses= {status.HTTP_404_NOT_FOUND: {"model": MenuItemNotFound}},
-            description="Get menu item by ID")
-async def get_menu_items(id: str,response: Response,
-                         item_service: Annotated[MenuItemService, Depends(get_menu_item_service)]
-                         )-> BaseMenuItem | MenuItemNotFound:
+    "/{id}",
+    responses= {status.HTTP_404_NOT_FOUND: {"model": MenuItemNotFound}},
+    description="Get menu item by ID"
+)
+async def get_menu_item(
+        id: str,response: Response,
+        item_service: Annotated[MenuItemService, Depends(get_menu_item_service)]
+)-> BaseMenuItem | MenuItemNotFound:
     try:
         return await item_service.get_one_item(id)
     except MenuItemNotExists:

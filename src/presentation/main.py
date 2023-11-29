@@ -1,3 +1,5 @@
+from typing import Type
+
 from redis import Redis
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
@@ -5,11 +7,11 @@ from motor.motor_asyncio import AsyncIOMotorClient
 
 from src.presentation.handlers.menu import menu_items
 from src.presentation.api.di.providers.cache import get_cache, CacheProvider
-from src.ifrastructure.db.db import  DB_provider, get_db
+from src.infrastructure.db.db import  DB_provider, get_db
 from src.settings import settings
 
 
-def setup_di(app: FastAPI,cache: Redis, pool: AsyncIOMotorClient, db_name: str):
+def setup_di(app: FastAPI,cache: Redis, pool , db_name: str):
     db_provider = DB_provider(pool, db_name)
     cache_provider = CacheProvider(cache)
     app.dependency_overrides[get_db] = db_provider.get_session

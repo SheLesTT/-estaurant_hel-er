@@ -1,4 +1,4 @@
-from src.ifrastructure.db.uow import UnitOfWork
+from src.infrastructure.db.uow import UnitOfWork
 
 
 class DB_provider():

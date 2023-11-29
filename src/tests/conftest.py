@@ -11,7 +11,7 @@ from starlette.middleware.cors import CORSMiddleware
 
 from src.presentation import menu_items_router
 from src.settings import settings
-from src.ifrastructure.db import DB_provider, get_db
+from src.infrastructure.db import DB_provider, get_db
 from src.domain.menu.dto.all_schemas import BaseMenuItem
 
 

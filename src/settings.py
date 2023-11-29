@@ -12,6 +12,9 @@ class Settings(BaseSettings):
     redis_host: str
     redis_port: int
     redis_database: int
+    secret_key: str
+    algorithm: str
+    access_token_expire_minutes: int
 
     model_config = SettingsConfigDict( env_file='~/Restourant2/.env', extra='ignore')
 

@@ -1,7 +1,7 @@
 import  pytest
 
 from src.domain.menu.dto.all_schemas import BaseMenuItem, BaseOrder
-from src.ifrastructure.db.Represitories.menu_item_repo import MenuItemRepo
+from src.infrastructure.db.Represitories.menu_item_repo import MenuItemRepo
 
 @pytest.mark.asyncio
 async def test_creating_recipe(set_db):

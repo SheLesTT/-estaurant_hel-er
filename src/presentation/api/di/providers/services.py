@@ -1,7 +1,7 @@
 from fastapi import Depends
 
 from src.presentation.api.di.providers.cache import get_cache
-from src.ifrastructure.db.db import get_db
+from src.infrastructure.db.db import get_db
 from src.domain.menu.usecases.menu_item_service import MenuItemService
 
 

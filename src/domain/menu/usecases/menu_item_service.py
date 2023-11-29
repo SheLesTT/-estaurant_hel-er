@@ -5,7 +5,7 @@ from typing import Mapping
 from src.presentation.handlers.utils import parse_request_parameters_into_mongo_filter
 from src.domain.menu.dto.all_schemas import BaseMenuItem
 
-from src.ifrastructure.db.Represitories.menu_item import MenuItemRepo
+from src.infrastructure.db.Represitories.menu_item import MenuItemRepo
 from src.domain.menu.exceptions.menu_item import MenuItemNotExists
 
 
